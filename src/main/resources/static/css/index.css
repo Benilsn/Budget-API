@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*  NAV  */
+
+.nav-container {
+    margin: 0.1em;
+    background-color: rgba(98, 110, 241, 0.5);
+    height: fit-content;
+    border: 1px solid rgb(17, 15, 15);
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]:checked~nav {
+    display: flex;
+}
+
+.menu-img:hover {
+    cursor: pointer;
+    background-color: rgb(149, 170, 226);
+    -moz-box-align: stretch;
+    -webkit-box-shadow: 0 3px 15px 0 rgb(107, 142, 238);
+}
+
+nav {
+    display: none;
+    background-color: white;
+    padding: 0.7em;
+    border: 1px solid rgb(17, 15, 15);
+    position: absolute;
+    width: 10em;
+    height: fit-content;
+}
+
+ul {
+    list-style: none;
+}
+
+.nav-item {
+    margin-bottom: 1em;
+    font-size: 1.2em;
+}
+
+.nav-link {
+    text-decoration: none;
+    display: flex;
+    left: 0;
+}
+
+.nav-link:hover {
+    box-shadow: 5px 10px;
+    -webkit-box-shadow: 0 1px 15px 0 rgb(107, 142, 238);
+}
+
+.nav-link img {
+    padding-right: 0.5em;
+}
+
+
+/*  /NAV  */
