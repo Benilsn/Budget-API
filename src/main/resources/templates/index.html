@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
     <link th:href="@{/styles/index.css}" rel="stylesheet" />
+    <!-- <link href="../static/styles/index.css" rel="stylesheet" /> -->
 </head>
+
 <body>
 
-<header class="nav-container">
+    <header class="nav-container">
 
-    <input type="checkbox" id="check">
-    <label for="check">
-        <img class="menu-img" th:src="@{/img/icons8-menu-48.png}" alt="Menu">
-    </label>
-    <a href="/logout">Logout</a>
+        <input type="checkbox" id="check">
+        <label for="check">
+         <img class="menu-img" th:src="@{/img/icons8-menu-48.png}" alt="Menu">
+            <!-- <img class="menu-img" src="../static/img/icons8-menu-48.png" alt="Menu"> -->
+        </label>
 
-    <nav>
-        <ul class="navbar">
+        <nav>
+            <ul class="navbar">
 
-            <li class="nav-item">
+                <li class="nav-item">
 
-                <a class="nav-link" href="/index"><img th:src="@{/img/icons8-casinha-de-cachorro-20.png}">Home</a>
-            </li>
+                    <!-- <a class="nav-link" href="/index"><img class="menu-img" src="../static/img/icons8-casinha-de-cachorro-20.png"" alt="Menu">Home</a> -->
+                    <a class="nav-link" href="/index"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}" alt="Menu">Home</a>
 
-            <li class="nav-item">
-                <a class="nav-link" href=""><img th:src="@{/img/icons8-entrar-20.png}">Login</a>
-            </li>
+                </li>
 
-        </ul>
-    </nav>
-</header>
+                <li class="nav-item">
+
+                    <!-- <a class="nav-link" href="/index"><img class="menu-img" src="../static/img/icons8-crie-um-novo-20.png"" alt="Menu">Create Budget</a> -->
+                    <a class="nav-link" href="/index"><img class="menu-img" th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create Budget</a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <!-- <a class="nav-link" href="/logout"><img class="menu-img" src="../static/img/icons8-entrar-20.png" alt="Menu">Get Budget</a> -->
+                    <a class="nav-link" href="/logout"><img class="menu-img" th:src="@{/img/icons8-entrar-20.png}" alt="Menu">Get Budget</a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <!-- <a class="nav-link" href="/logout"><img class="menu-img" src="../static/img/icons8-desligar-20.png"" alt="Menu">Logout</a> -->
+                    <a class="nav-link" href="/logout"><img class="menu-img" th:src="@{/img/icons8-desligar-20.png}" alt="Menu">Logout</a>
+
+                </li>
+
+            </ul>
+        </nav>
+    </header>
 
 </body>
+
 </html>
