@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link href="../static/css/index.css" rel="stylesheet" type="text/css" />
+    <link th:href="@{/styles/index.css}" rel="stylesheet" />
 </head>
 <body>
 
@@ -11,19 +11,20 @@
 
     <input type="checkbox" id="check">
     <label for="check">
-        <img class="menu-img" src="../static/img/icons8-menu-48.png" alt="Menu">
+        <img class="menu-img" th:src="@{/img/icons8-menu-48.png}" alt="Menu">
     </label>
+    <a href="/logout">Logout</a>
 
     <nav>
         <ul class="navbar">
 
             <li class="nav-item">
 
-                <a class="nav-link" href="/index"><img src="../static/img/icons8-casinha-de-cachorro-20.png">Home</a>
+                <a class="nav-link" href="/index"><img th:src="@{/img/icons8-casinha-de-cachorro-20.png}">Home</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href=""><img src="../static/img/icons8-entrar-20.png">Login</a>
+                <a class="nav-link" href=""><img th:src="@{/img/icons8-entrar-20.png}">Login</a>
             </li>
 
         </ul>
