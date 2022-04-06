@@ -1,6 +1,5 @@
 package com.varejonline.budget.Budget.models.user;
 
-import com.varejonline.budget.Budget.models.user.role.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -10,17 +9,17 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "User")
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id")
     private Integer userId;
 
-    @Column(name="user_name")
+    @Column(name="username")
     @NonNull
-    private String userName;
+    private String username;
 
     @Column(name="password")
     @NonNull
@@ -28,5 +27,11 @@ public class User {
 
     @Column(name="role")
     @NonNull
-    private Role role;
+    private String role;
+
+    public User(String username, String password, String role){
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 }

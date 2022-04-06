@@ -1,11 +1,15 @@
 package com.varejonline.budget.Budget.config;
 
+import com.varejonline.budget.Budget.repositories.UserRepository;
+import com.varejonline.budget.Budget.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -18,11 +22,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
+
+    @Override
+    public UserDetailsService userDetailsServiceBean() throws Exception{
+        return new UserService(userRepository);
+    }
+
     @Override
     protected void configure (HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").access("hasAnyAuthority('USER', 'ADMIN')")
-                .antMatchers("/admin").access("hasAnyAuthority('ADMIN')")
+                .antMatchers("/login", "/h2/**").permitAll()
+                .antMatchers("/admin").access("hasAuthority('ADMIN')")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -30,14 +45,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login").permitAll();
+                .logoutSuccessUrl("/login").permitAll()
+                .and()
+                .httpBasic();
+
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
 
     }
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("seller").password(passwordEncoder().encode("seller")).authorities("USER")
+
+        auth.userDetailsService(userDetailsServiceBean())
+                .passwordEncoder(passwordEncoder());
+
+        /*auth.inMemoryAuthentication()
+                .withUser("manager").password(passwordEncoder().encode("manager"))
+                .authorities("ADMIN")
                 .and()
-                .withUser("manager").password(passwordEncoder().encode("manager")).authorities("ADMIN");
+                .withUser("user")
+                .password(passwordEncoder().encode("password"))
+                .authorities("USER");*/
+
     }
 }
