@@ -14,7 +14,10 @@ public class BudgetService {
     private BudgetRepository budgetRepository;
 
     public List<Budget> getAll (){
-
         return (List<Budget>) budgetRepository.findAll();
+    }
+
+    public void save(Budget budget){
+        budgetRepository.save(budget);
     }
 }
