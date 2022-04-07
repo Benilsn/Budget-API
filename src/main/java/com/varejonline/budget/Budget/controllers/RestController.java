@@ -16,7 +16,7 @@ public class RestController {
     @Autowired
     private BudgetService budgetService;
 
-    @GetMapping("/users")
+    @GetMapping("/budgets")
     public List<Budget> getAll(){
         return budgetService.getAll();
     }

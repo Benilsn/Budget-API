@@ -1,6 +1,7 @@
 package com.varejonline.budget.Budget.services;
 
 import com.varejonline.budget.Budget.models.budget.Budget;
+import com.varejonline.budget.Budget.models.client.Client;
 import com.varejonline.budget.Budget.repositories.BudgetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,15 @@ public class BudgetService {
     }
 
     public void save(Budget budget){
-        budgetRepository.save(budget);
+
+        Budget budgetToSave = new Budget();
+
+        budgetToSave.setValidity(budget.getValidity());
+        budgetToSave.setClient(new Client(
+                budget.getClient().getName(),
+                budget.getClient().getAddress()
+        ));
+
+        budgetRepository.save(budgetToSave);
     }
 }

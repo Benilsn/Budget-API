@@ -1,0 +1,14 @@
+.form-container {
+    position: absolute;
+    top: 8em;
+    left: 30em;
+    background-color: rgb(149, 170, 226, 0.8);
+    width: 30em;
+    height: 30em;
+    display: flex;
+    justify-content: center;
+}
+
+.form-container h2 {
+    text-decoration: underline;
+}
