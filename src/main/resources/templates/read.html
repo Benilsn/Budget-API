@@ -6,6 +6,8 @@
     <title>Create</title>
     <!-- <link th:href="@{/styles/index.css}" rel="stylesheet" /> -->
     <link href="../static/styles/index.css" rel="stylesheet" />
+    <link href="../static/styles/read.css" rel="stylesheet" />
+    <script type="text/javascript" th:src="../static/scripts/get.js"></script>
 </head>
 
 <body>
@@ -37,7 +39,7 @@
 
                 <li class="nav-item">
 
-                    <a class="nav-link" href="./read.html"><img class="menu-img" src="../static/img/icons8-entrar-20.png" alt="Menu">Get Budget</a>
+                    <a class="nav-link" href="./read.html" th:onclick="get()"><img class="menu-img" src="../static/img/icons8-entrar-20.png" alt="Menu">Get Budget</a>
                     <!-- <a class="nav-link" href="/logout"><img class="menu-img" th:src="@{/img/icons8-entrar-20.png}" alt="Menu">Get Budget</a> -->
 
                 </li>
@@ -52,6 +54,12 @@
             </ul>
         </nav>
     </header>
+
+    <div class="table-div">
+        <table id="data-table " class="data-table ">
+
+        </table>
+    </div>
 
 </body>
 

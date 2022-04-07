@@ -18,15 +18,12 @@ public class BudgetService {
         return (List<Budget>) budgetRepository.findAll();
     }
 
-    public void save(Budget budget){
+    public void save(Integer validity, String client_name, String client_address){
 
         Budget budgetToSave = new Budget();
 
-        budgetToSave.setValidity(budget.getValidity());
-        budgetToSave.setClient(new Client(
-                budget.getClient().getName(),
-                budget.getClient().getAddress()
-        ));
+        budgetToSave.setValidity(validity);
+        budgetToSave.setClient(new Client(client_name, client_address));
 
         budgetRepository.save(budgetToSave);
     }

@@ -56,9 +56,20 @@
 
     <div class="form-container">
         <h2>New Budget</h2>
-        <form>
-
-
+        <form action="http://localhost:8080/api/" method="POST">
+            <div>
+                <br><br>
+                <label class="form-label" for="validity">Validity (days):</label>
+                <input class="form-input" type="text" id="validity" name="validity">
+                <br><br>
+                <label class="form-label" for="client_name">Client name:</label>
+                <input class="form-input" type="text" id="client_name" name="client_name">
+                <br><br>
+                <label class="form-label" for="client_address">Client Address:</label>
+                <input class="form-input" type="text" id="client_address" name="client_address">
+                <br><br>
+                <button class="form-btn" type="submit">Create</button>
+            </div>
         </form>
 
     </div>
