@@ -1,23 +1,19 @@
-async function get() {
-
-    const resp =
-        await fetch('http://localhost:8080/api/budgets')
+function get(event) {
+    fetch('http://localhost:8080/api/budgets')
         .then(function(resp) {
             return resp.json();
         })
-
-    .then(function(data) {
-        console.log(data);
-    })
-
-    .catch(function(error) {
-        console.warn('Somethin went wrong!', error);
-    });
+        .then(function(data) {
+            console.log(data)
+            dataToTable(data)
+        })
+        .catch(function(error) {
+            console.warn('Something went wrong!', error);
+        });
 }
 
-get();
-
 function dataToTable(data) {
+    console.log(data);
     list = data;
     let tab =
         `<tr>
@@ -30,11 +26,12 @@ function dataToTable(data) {
     list.forEach(data => {
         tab += `<tr"> 
     <td>${data.id} </td>
-    <td>${data.validity}</td>
+    /<td>${data.validity}</td>
     <td>${data.client.name}</td> 
-    <td>${data.client.address}</td>        
+    <td>${data.client.address}</td>
+    <td><a>Update</a></td>
+    <td><a>Delete</a></td>
     </tr>`;
-
     });
 
     document.getElementById("data-table").innerHTML = tab;

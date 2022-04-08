@@ -11,9 +11,19 @@ public class HomeController {
         return"login";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/index")
     public String index(){
         return "index";
+    }
+
+    @RequestMapping("/create")
+    public String create(){
+        return"create";
+    }
+
+    @RequestMapping("/read")
+    public String read(){
+        return"read";
     }
 
     @RequestMapping("/admin")

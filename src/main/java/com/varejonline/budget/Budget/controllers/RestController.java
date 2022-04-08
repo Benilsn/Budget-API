@@ -13,7 +13,6 @@ public class RestController {
     @Autowired
     private BudgetService budgetService;
 
-
     @GetMapping("/budgets")
     public List<Budget> getAll(){
         return budgetService.getAll();
@@ -25,6 +24,7 @@ public class RestController {
                             @RequestParam(name = "client_address") String client_address){
 
         budgetService.save(validity, client_name, client_address);
+
 
     }
 }
