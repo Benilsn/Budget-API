@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Create</title>
+    <title>[[${pageTitle}]]</title>
     <link th:href="@{/styles/index.css}" rel="stylesheet" />
-    <link th:href="@{/styles/create.css}" rel="stylesheet" />
+    <link href="../static/styles/create.css" th:href="@{/styles/create.css}" rel="stylesheet" />
 </head>
 
 <body>
@@ -29,7 +29,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/read"><img class="menu-img" th:src="@{/img/icons8-entrar-20.png}" alt="Menu">Get Budget</a>
+                    <a class="nav-link" href="/read"><img class="menu-img" th:src="@{/img/icons8-entrar-20.png}" alt="Menu">View Budgets</a>
                 </li>
 
                 <li class="nav-item">
@@ -41,25 +41,31 @@
     </header>
 
     <div class="form-container">
-        <h2>New Budget</h2>
+        <h2>[[${pageTitle}]]</h2>
         <form th:action="@{/budgets/save}" method="POST" th:obejct="${newBudget}">
+            <input type="hidden" id="id" th:field="*{newBudget.id}">
             <div>
                 <br><br>
                 <label class="form-label" for="validity">Validity (days):</label>
-                <input id="validity" class="form-input" type="text" th:field="*{newBudget.validity}">
+                <input id="validity" class="form-input" type="text" th:field="*{newBudget.validity}" required minlength="1">
                 <br><br>
                 <label class="form-label" for="client_name">Client name:</label>
-                <input id="client_name" class="form-input" type="text" th:field="*{newBudget.client.name}">
+                <input id="client_name" class="form-input" type="text" th:field="*{newBudget.client.name}" required minlength="3">
                 <br><br>
                 <label class="form-label" for="client_address">Client Address:</label>
-                <input id="client_address" class="form-input" type="text" th:field="*{newBudget.client.address}">
+                <input id="client_address" class="form-input" type="text" th:field="*{newBudget.client.address}" required minlength="6">
                 <br><br>
                 <button class="form-btn" type="submit">Create</button>
+                <button class="form-btn" type="button" onclick="cancelForm()">Cancel</button>
             </div>
         </form>
 
     </div>
-
+    <script>
+        function cancelForm() {
+            window.location = "[[@{/}]]"
+        }
+    </script>
 </body>
 
 </html>
