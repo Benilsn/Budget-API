@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Create</title>
-    <link th:href="@{/styles/index.css}" rel="stylesheet" />
-    <link th:href="@{/styles/read.css}" rel="stylesheet" />
+    <link href="../static/styles/index.css" th:href="@{/styles/index.css}" rel="stylesheet" />
+    <link href="../static/styles/read.css" th:href="@{/styles/read.css}" rel="stylesheet" />
 
 </head>
 
-<body th:onload="get()">
+<body>
 
 
     <header class="nav-container">
 
         <input type="checkbox" id="check">
         <label for="check">
-         <img class="menu-img" th:src="@{/img/icons8-menu-48.png}" alt="Menu">
+         <img class="menu-img" src="../static/img/icons8-menu-48.png" th:src="@{/img/icons8-menu-48.png}" alt="Menu">
         </label>
 
         <nav>
@@ -44,6 +44,24 @@
 
     <div class="table-div">
         <table id="data-table" class="data-table ">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Validity (days)</th>
+                    <th>Client Name</th>
+                    <th>Client Address</th>
+                    <th>UPDATE</th>
+                    <th>DELETE</th>
+                </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="budget : ${listBudgets}">
+                <tr>
+                    <td>[[${budget.id}]]</td>
+                    <td>[[${budget.validity}]]</td>
+                </tr>
+            </th:block>
+            </tbody>
         </table>
 
     </div>

@@ -38,9 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure (HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                /*.antMatchers(HttpMethod.GET).permitAll()
-                .antMatchers(HttpMethod.POST).permitAll()*/
-                .antMatchers("/login").permitAll()
+                .antMatchers(HttpMethod.GET).permitAll()
+                .antMatchers(HttpMethod.POST).permitAll()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/admin").access("hasAuthority('ADMIN')")
                 .anyRequest()
                 .authenticated()
@@ -63,13 +63,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsServiceBean())
                 .passwordEncoder(passwordEncoder());
 
-        /*auth.inMemoryAuthentication()
+        auth.inMemoryAuthentication()
                 .withUser("manager").password(passwordEncoder().encode("manager"))
                 .authorities("ADMIN")
                 .and()
                 .withUser("user")
                 .password(passwordEncoder().encode("password"))
-                .authorities("USER");*/
+                .authorities("USER");
 
     }
 }

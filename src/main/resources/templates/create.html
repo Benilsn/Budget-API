@@ -42,7 +42,7 @@
 
     <div class="form-container">
         <h2>New Budget</h2>
-        <form action="http://localhost:8080/api/" method="POST">
+        <form th:action="@{/budgets/new}" method="POST">
             <div>
                 <br><br>
                 <label class="form-label" for="validity">Validity (days):</label>
