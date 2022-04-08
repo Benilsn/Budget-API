@@ -23,11 +23,11 @@
             <ul class="navbar">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/index"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}" alt="Menu">Home</a>
+                    <a class="nav-link" href="/"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}" alt="Menu">Home</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/create"><img class="menu-img" th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create Budget</a>
+                    <a class="nav-link" href="/budgets/create"><img class="menu-img" th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create Budget</a>
                 </li>
 
                 <li class="nav-item">
@@ -43,7 +43,7 @@
     </header>
 
     <div class="table-div">
-        <table id="data-table" class="data-table ">
+        <table class="data-table ">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -55,17 +55,18 @@
                 </tr>
             </thead>
             <tbody>
-            <th:block th:each="budget : ${listBudgets}">
+            <th:block th:each="budget:${budgets}">
                 <tr>
-                    <td>[[${budget.id}]]</td>
-                    <td>[[${budget.validity}]]</td>
+                    <td th:text="${budget.id}"></td>
+                    <td th:text="${budget.validity}"></td>
+                    <td th:text="${budget.client.name}"></td>
+                    <td th:text="${budget.client.address}"></td>
                 </tr>
             </th:block>
             </tbody>
         </table>
 
     </div>
-    <script type="text/javascript" th:src="@{/scripts/get.js}"></script>
 </body>
 
 </html>

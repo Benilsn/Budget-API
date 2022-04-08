@@ -21,11 +21,11 @@
             <ul class="navbar">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/index"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}" alt="Menu">Home</a>
+                    <a class="nav-link" href="/"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}" alt="Menu">Home</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/create"><img class="menu-img" th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create Budget</a>
+                    <a class="nav-link" href="/budgets/create"><img class="menu-img" th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create Budget</a>
                 </li>
 
                 <li class="nav-item">
@@ -42,17 +42,17 @@
 
     <div class="form-container">
         <h2>New Budget</h2>
-        <form th:action="@{/budgets/new}" method="POST">
+        <form th:action="@{/budgets/save}" method="POST" th:obejct="${newBudget}">
             <div>
                 <br><br>
                 <label class="form-label" for="validity">Validity (days):</label>
-                <input class="form-input" type="text" id="validity" name="validity">
+                <input id="validity" class="form-input" type="text" th:field="*{newBudget.validity}">
                 <br><br>
                 <label class="form-label" for="client_name">Client name:</label>
-                <input class="form-input" type="text" id="client_name" name="client_name">
+                <input id="client_name" class="form-input" type="text" th:field="*{newBudget.client.name}">
                 <br><br>
                 <label class="form-label" for="client_address">Client Address:</label>
-                <input class="form-input" type="text" id="client_address" name="client_address">
+                <input id="client_address" class="form-input" type="text" th:field="*{newBudget.client.address}">
                 <br><br>
                 <button class="form-btn" type="submit">Create</button>
             </div>
