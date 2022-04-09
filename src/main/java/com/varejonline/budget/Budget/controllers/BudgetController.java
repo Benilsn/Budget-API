@@ -114,9 +114,7 @@ public class BudgetController {
         }catch (BudgetNotFoundException e){
             ra.addFlashAttribute("message", "Budget Not Found!");
         }
-
         return "redirect:/read";
     }
-
 
 }
