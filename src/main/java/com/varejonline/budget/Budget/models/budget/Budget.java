@@ -6,14 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.context.SecurityContextHolder;
-
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
+
 
 @Table(name = "Budget")
 @Entity
@@ -32,6 +30,7 @@ public class Budget {
     @OneToOne(cascade = CascadeType.ALL)
     private Client client;
 
+    @OneToMany(cascade=CascadeType.ALL)
     @ElementCollection
     @CollectionTable(name = "products", joinColumns = @JoinColumn(name = "budget_id"))
     private Set<Product> products = new HashSet<>();
@@ -68,7 +67,15 @@ public class Budget {
         this.createdBy = SecurityContextHolder.getContext().getAuthentication().getName();
         this.expire = sdf.format(LocalDate.now().plusDays(validity));
         this.itensAmount = products.size();
-
     }
+
+    public void addProduct(Product product){
+        products.add(product);
+    }
+
+    public void setItensAmount(){
+        this.itensAmount = products.size();
+    }
+
 
 }

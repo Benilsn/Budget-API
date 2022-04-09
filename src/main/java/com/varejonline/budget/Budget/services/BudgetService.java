@@ -6,10 +6,8 @@ import com.varejonline.budget.Budget.models.client.Client;
 import com.varejonline.budget.Budget.models.product.Product;
 import com.varejonline.budget.Budget.repositories.BudgetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,25 +18,26 @@ public class BudgetService {
     private BudgetRepository budgetRepository;
 
 
-    public List<Budget> getAllBudgets (){
+    public List<Budget> getAllBudgets() {
         return (List<Budget>) budgetRepository.findAll();
     }
 
-    public List<Product> getAllProducts(){
-        var budget = (List<Budget>) budgetRepository.findAll();
-        List<Product> products = new ArrayList<>();
+    public List<Product> getAllProducts(Long id) throws BudgetNotFoundException {
 
-        for (Budget b : budget){
-            for (Product p : b.getProducts()){
-                products.add(p);
-            }
+        var budget = budgetRepository.findById(id);
+
+        if (budget.isPresent()) {
+
+            List<Product> products = new ArrayList<>();
+            budget.get().getProducts().stream().forEach(products::add);
+            return products;
         }
-        return products;
+        throw new BudgetNotFoundException("Budget with ID: " + id + " not found!");
     }
 
-    public void save(Budget budget){
+    public void save(Budget budget) {
 
-        if (budget.getId() == null){
+        if (budget.getId() == null) {
             Budget budgetToSave = new Budget(
                     budget.getValidity(),
                     new Client(
@@ -48,7 +47,7 @@ public class BudgetService {
                     budget.getObservation()
             );
             budgetRepository.save(budgetToSave);
-        }else {
+        } else {
             budgetRepository.save(budget);
         }
     }
@@ -56,7 +55,7 @@ public class BudgetService {
     public Budget get(Long id) throws BudgetNotFoundException {
         var budget = budgetRepository.findById(id);
 
-        if (budget.isPresent()){
+        if (budget.isPresent()) {
             return budget.get();
         }
         throw new BudgetNotFoundException("Budget with ID: " + id + " not found!");
@@ -66,16 +65,22 @@ public class BudgetService {
     public void delete(Long id) throws BudgetNotFoundException {
         var count = budgetRepository.countById(id);
 
-        if (count == null || count == 0){
-            throw new BudgetNotFoundException("Could not find any budget with ID: "+ id);
+        if (count == null || count == 0) {
+            throw new BudgetNotFoundException("Could not find any budget with ID: " + id);
         }
         budgetRepository.deleteById(id);
     }
 
-    public void save(Budget budget, Product product){
-        budget.getProducts().add(product);
+    public void saveProductToBudget(Budget budget, Product product) throws BudgetNotFoundException {
+        var productToSave = new Product();
+        productToSave.setName(product.getName());
+        productToSave.setAmount(product.getAmount());
+        productToSave.setUnitaryValue(product.getUnitaryValue());
+        productToSave.setPercentageDiscount(product.getPercentageDiscount());
+        productToSave.setTotalDiscount();
+        budget.addProduct(productToSave);
+        budget.setItensAmount();
         budgetRepository.save(budget);
     }
-
 
 }

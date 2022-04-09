@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BudgetRepository extends CrudRepository<Budget, Long> {
 
-    public Long countById(Long id);
+    Long countById(Long id);
 }

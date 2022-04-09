@@ -58,14 +58,14 @@
                 <label class="form-label" for="observation">Observation:</label>
                 <input id="observation" class="form-input" type="text" th:field="*{newBudget.observation}">
                 <br><br>
+
                 <input type="hidden" th:field="*{newBudget.totalValue}">
-                <input type="hidden" th:field="*{newBudget.observation}">
                 <input type="hidden" th:field="*{newBudget.timeCreated}">
                 <input type="hidden" th:field="*{newBudget.createdBy}">
                 <input type="hidden" th:field="*{newBudget.expire}">
                 <input type="hidden" th:field="*{newBudget.itensAmount}">
 
-                <button class="form-btn" type="submit">Create</button>
+                <button class="form-btn" type="submit">[[${saveButton}]]</button>
                 <button class="form-btn" type="button" onclick="cancelForm()">Cancel</button>
             </div>
         </form>

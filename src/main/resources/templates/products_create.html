@@ -40,9 +40,13 @@
     </nav>
 </header>
 
+<div th:if="${message}">
+    [[${message}]]
+</div>
+
 <div class="form-container">
     <h2>[[${pageTitle}]]</h2>
-    <form th:action="@{/products/save}" method="POST" th:obejct="${newProduct}">
+    <form th:action="@{'/products/save/' + ${budgetID}}" method="POST" th:obejct="${newProduct}">
         <div>
             <br><br>
             <label class="form-label" for="name">Product Name:</label>

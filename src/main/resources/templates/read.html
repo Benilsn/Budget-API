@@ -42,8 +42,10 @@
         </nav>
     </header>
 
-    <div th:if="${message}"></div>
-    [[${message}]]
+    <div th:if="${message}">
+        [[${message}]]
+    </div>
+
     <div class="table-div">
         <table class="data-table ">
             <thead>
@@ -53,11 +55,11 @@
                     <th>Client Name</th>
                     <th>Client Address</th>
                     <th>Total Value</th>
-                    <th>Budget Products</th>
                     <th>CreatedBy</th>
                     <th>Date of Creation</th>
                     <th>Expire</th>
                     <th>Observation</th>
+                    <th>Budget Products</th>
                     <th></th>
                 </tr>
             </thead>
@@ -69,13 +71,14 @@
                         <td th:text="${budget.client.name}"></td>
                         <td th:text="${budget.client.address}"></td>
                         <td th:text="${budget.totalValue}"></td>
-                        <td><a th:href="@{'/products/create/' + ${budget.id}}">[[${budget.itensAmount}]]</a></td>
                         <td th:text="${budget.createdBy}"></td>
                         <td th:text="${budget.timeCreated}"></td>
                         <td th:text="${budget.expire}"></td>
                         <td th:text="${budget.observation}"></td>
+                        <td><a th:href="@{'/products/read/' + ${budget.id}}">[[${budget.itensAmount}]]</a></td>
 
                         <td>
+                            <a th:href="@{'/products/create/' + ${budget.id}}">Add Product</a>
                             <a th:href="@{'/budgets/edit/' + ${budget.id}}">Edit</a>
                             <a th:href="@{'/budgets/delete/' + ${budget.id}}">Delete</a>
                         </td>

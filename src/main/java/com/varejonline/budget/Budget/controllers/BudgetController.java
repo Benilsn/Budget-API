@@ -36,6 +36,7 @@ public class BudgetController {
     public String newBudget(Model model){
         model.addAttribute("newBudget", new Budget());
         model.addAttribute("pageTitle", "Create Budget Page");
+        model.addAttribute("saveButton", "Create");
         return "create";
     }
 
@@ -54,6 +55,7 @@ public class BudgetController {
             model.addAttribute("newBudget", newBudget);
             model.addAttribute("pageTitle", "Edit Budget (ID: " + id + ")");
             ra.addFlashAttribute("message", "The budget has been successfully edited!");
+            model.addAttribute("saveButton", "Edit");
             return "create";
 
         } catch (BudgetNotFoundException e) {
@@ -74,32 +76,47 @@ public class BudgetController {
         return "redirect:/read";
     }
 
-    @GetMapping("/products/read")
-    public String showProductsList(Model model, RedirectAttributes ra){
-        List<Product> productsList = budgetService.getAllProducts();
-        model.addAttribute("products", productsList);
-        model.addAttribute("pageTitle", "View Products");
-        ra.addFlashAttribute("message", "Budget Products");
-        return "products_read";
+    @GetMapping("/products/read/{id}")
+    public String showProductsList(@PathVariable("id") Long id, Model model, RedirectAttributes ra){
+
+        try {
+            List<Product> productsList = budgetService.getAllProducts(id);
+            model.addAttribute("products", productsList);
+            model.addAttribute("pageTitle", "View Products");
+            ra.addFlashAttribute("message", "Budget ID:"+id+" Products");
+            return "products_read";
+
+        }catch (BudgetNotFoundException e){
+            ra.addFlashAttribute("message", "Budget Not Found!");
+            return "read";
+        }
     }
 
     @GetMapping("/products/create/{id}")
-    public String newProduct(@PathVariable("id") Long id, Model model){
-        model.addAttribute("newProduct", new Product());
-        model.addAttribute("pageTitle", "Create Product Page");
+    public String newProduct(@PathVariable("id")Long id, Model model, RedirectAttributes ra){
+        try {
+            Budget budget = budgetService.get(id);
+            model.addAttribute("budgetID", budget.getId());
+            model.addAttribute("newProduct", new Product());
+            model.addAttribute("pageTitle", "Create Product Page");
+        }catch (BudgetNotFoundException e){
+            ra.addFlashAttribute("message", "Budget with ID: " + id + " Not Found!");
+        }
         return "products_create";
     }
 
-    @PostMapping("/budgets/save/{id}")
-    public String saveProduct(@PathVariable("id") Long id, Product product, RedirectAttributes ra){
+    @PostMapping("/products/save/{id}")
+    public String saveProduct(@PathVariable("id")Long id, Product product, RedirectAttributes ra){
         try {
             Budget budget = budgetService.get(id);
-            budgetService.save(budget, product);
+            budgetService.saveProductToBudget(budget, product);
+            ra.addFlashAttribute("message", "The product has been created!");
         }catch (BudgetNotFoundException e){
             ra.addFlashAttribute("message", "Budget Not Found!");
         }
 
         return "redirect:/read";
     }
+
 
 }

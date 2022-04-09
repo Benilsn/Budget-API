@@ -17,7 +17,7 @@ import java.util.Set;
 @Service
 public class UserService implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;

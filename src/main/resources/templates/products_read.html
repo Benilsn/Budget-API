@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>[[${pageTitle}]]</title>
-    <link href="../static/styles/index.css" th:href="@{/styles/index.css}" rel="stylesheet" />
-    <link href="../static/styles/read.css" th:href="@{/styles/read.css}" rel="stylesheet" />
+    <link href="../static/styles/index.css" th:href="@{/styles/index.css}" rel="stylesheet"/>
+    <link href="../static/styles/read.css" th:href="@{/styles/read.css}" rel="stylesheet"/>
 
 </head>
 
@@ -23,19 +23,24 @@
         <ul class="navbar">
 
             <li class="nav-item">
-                <a class="nav-link" href="/"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}" alt="Menu">Home</a>
+                <a class="nav-link" href="/"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}"
+                                                  alt="Menu">Home</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/budgets/create"><img class="menu-img" th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create Budget</a>
+                <a class="nav-link" href="/budgets/create"><img class="menu-img"
+                                                                th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create
+                    Budget</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/read"><img class="menu-img" th:src="@{/img/icons8-entrar-20.png}" alt="Menu">View Budgets</a>
+                <a class="nav-link" href="/read"><img class="menu-img" th:src="@{/img/icons8-entrar-20.png}" alt="Menu">View
+                    Budgets</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/logout"><img class="menu-img" th:src="@{/img/icons8-desligar-20.png}" alt="Menu">Logout</a>
+                <a class="nav-link" href="/logout"><img class="menu-img" th:src="@{/img/icons8-desligar-20.png}"
+                                                        alt="Menu">Logout</a>
             </li>
 
         </ul>
@@ -51,9 +56,9 @@
             <th>ID</th>
             <th>Name</th>
             <th>Amount</th>
-            <th>Unitary value</th>
+            <th>Unitary value (R$)</th>
             <th>Discount(%)</th>
-            <th>Total discount</th>
+            <th>Total with discount (R$)</th>
             <th></th>
         </tr>
         </thead>
@@ -63,15 +68,10 @@
                 <td th:text="${product.id}"></td>
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.amount}"></td>
-                <td th:text="${product.unitaryValue}"></td>
-                <td th:text="${product.percentageDiscount}"></td>
-                <td th:text="${product.totalDiscount}"></td>
+                <td th:text="'R$ ' + ${product.unitaryValue}"></td>
+                <td th:text="${product.percentageDiscount} + ' %'"></td>
+                <td th:text="'R$ ' + ${product.totalDiscount}"></td>
 
-
-                <td>
-                    <a th:href="@{'/budgets/edit/' + ${budget.id}}">Edit</a>
-                    <a th:href="@{'/budgets/delete/' + ${budget.id}}">Delete</a>
-                </td>
             </tr>
         </th:block>
         </tbody>
