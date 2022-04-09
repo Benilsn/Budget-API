@@ -43,7 +43,7 @@
     </header>
 
     <div th:if="${message}"></div>
-        [[${message}]]
+    [[${message}]]
     <div class="table-div">
         <table class="data-table ">
             <thead>
@@ -52,24 +52,35 @@
                     <th>Validity (days)</th>
                     <th>Client Name</th>
                     <th>Client Address</th>
+                    <th>Total Value</th>
                     <th>Budget Products</th>
+                    <th>CreatedBy</th>
+                    <th>Date of Creation</th>
+                    <th>Expire</th>
+                    <th>Observation</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-            <th:block th:each="budget:${budgets}">
-                <tr>
-                    <td th:text="${budget.id}"></td>
-                    <td th:text="${budget.validity}"></td>
-                    <td th:text="${budget.client.name}"></td>
-                    <td th:text="${budget.client.address}"></td>
-                    <td><a th:href="@{'/products/read'}">[[${budget.products.size}]]</a></td>
-                    <td>
-                        <a th:href="@{'/budgets/edit/' + ${budget.id}}">Edit</a>
-                        <a th:href="@{'/budgets/delete/' + ${budget.id}}">Delete</a>
-                    </td>
-                </tr>
-            </th:block>
+                <th:block th:each="budget:${budgets}">
+                    <tr>
+                        <td th:text="${budget.id}"></td>
+                        <td th:text="${budget.validity}"></td>
+                        <td th:text="${budget.client.name}"></td>
+                        <td th:text="${budget.client.address}"></td>
+                        <td th:text="${budget.totalValue}"></td>
+                        <td><a th:href="@{'/products/create/' + ${budget.id}}">[[${budget.itensAmount}]]</a></td>
+                        <td th:text="${budget.createdBy}"></td>
+                        <td th:text="${budget.timeCreated}"></td>
+                        <td th:text="${budget.expire}"></td>
+                        <td th:text="${budget.observation}"></td>
+
+                        <td>
+                            <a th:href="@{'/budgets/edit/' + ${budget.id}}">Edit</a>
+                            <a th:href="@{'/budgets/delete/' + ${budget.id}}">Delete</a>
+                        </td>
+                    </tr>
+                </th:block>
             </tbody>
         </table>
 

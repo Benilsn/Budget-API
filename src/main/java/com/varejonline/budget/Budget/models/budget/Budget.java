@@ -5,20 +5,25 @@ import com.varejonline.budget.Budget.models.product.Product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Table(name = "Budget")
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
 public class Budget {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -31,9 +36,39 @@ public class Budget {
     @CollectionTable(name = "products", joinColumns = @JoinColumn(name = "budget_id"))
     private Set<Product> products = new HashSet<>();
 
-    public Budget(Integer validity, Client client){
+    @Column
+    private Double totalValue;
+
+    @Column(nullable = true)
+    private String observation;
+
+    @Column
+    private String timeCreated;
+
+    @Column
+    private String createdBy;
+
+    @Column
+    private String expire;
+
+    @Column
+    private Integer itensAmount;
+
+    @Transient
+    private final DateTimeFormatter sdf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    public Budget(Integer validity, Client client, String observation){
         this.validity = validity;
         this.client = client;
+        for (Product p : products){
+            totalValue += p.getTotalDiscount();
+        }
+        this.observation = observation;
+        this.timeCreated = sdf.format(LocalDate.now());
+        this.createdBy = SecurityContextHolder.getContext().getAuthentication().getName();
+        this.expire = sdf.format(LocalDate.now().plusDays(validity));
+        this.itensAmount = products.size();
+
     }
 
 }

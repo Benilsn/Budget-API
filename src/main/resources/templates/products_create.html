@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link th:href="@{/styles/index.css}" rel="stylesheet" />
+    <link href="../static/styles/create.css" th:href="@{/styles/create.css}" rel="stylesheet" />
+</head>
+
+<body>
+
+<header class="nav-container">
+
+    <input type="checkbox" id="check">
+    <label for="check">
+        <img class="menu-img" th:src="@{/img/icons8-menu-48.png}" alt="Menu">
+    </label>
+
+    <nav>
+        <ul class="navbar">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}" alt="Menu">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/budgets/create"><img class="menu-img" th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create Budget</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/read"><img class="menu-img" th:src="@{/img/icons8-entrar-20.png}" alt="Menu">View Budgets</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/logout"><img class="menu-img" th:src="@{/img/icons8-desligar-20.png}" alt="Menu">Logout</a>
+            </li>
+
+        </ul>
+    </nav>
+</header>
+
+<div class="form-container">
+    <h2>[[${pageTitle}]]</h2>
+    <form th:action="@{/products/save}" method="POST" th:obejct="${newProduct}">
+        <div>
+            <br><br>
+            <label class="form-label" for="name">Product Name:</label>
+            <input id="name" class="form-input" type="text" th:field="*{newProduct.name}" required minlength="1">
+            <br><br>
+            <label class="form-label" for="amount">Product amount:</label>
+            <input id="amount" class="form-input" type="number" th:field="*{newProduct.amount}" required minlength="3">
+            <br><br>
+            <label class="form-label" for="unitaryValue">Unitary Value(R$):</label>
+            <input id="unitaryValue" class="form-input" type="number" th:field="*{newProduct.unitaryValue}" required minlength="6">
+            <br><br>
+            <label class="form-label" for="percentageDiscount">Discount(%):</label>
+            <input id="percentageDiscount" class="form-input" type="text" th:field="*{newProduct.percentageDiscount}">
+            <br><br>
+
+            <button class="form-btn" type="submit">Create</button>
+            <button class="form-btn" type="button" onclick="cancelForm()">Cancel</button>
+        </div>
+    </form>
+
+</div>
+<script>
+        function cancelForm() {
+            window.location = "[[@{/read}]]"
+        }
+    </script>
+</body>
+
+</html>
