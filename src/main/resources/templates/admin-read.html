@@ -6,43 +6,41 @@
     <title>[[${pageTitle}]]</title>
     <link th:href="@{/styles/index.css}" rel="stylesheet" />
     <link th:href="@{/styles/read.css}" rel="stylesheet" />
-
 </head>
 
 <body>
 
+<header class="nav-container">
 
-    <header class="nav-container">
+    <input type="checkbox" id="check">
+    <label for="check">
+        <img class="menu-img" th:src="@{/img/icons8-menu-48.png}" alt="Menu">
+    </label>
 
-        <input type="checkbox" id="check">
-        <label for="check">
-         <img class="menu-img" src="../static/img/icons8-menu-48.png" th:src="@{/img/icons8-menu-48.png}" alt="Menu">
-        </label>
+    <nav>
+        <ul class="navbar">
 
-        <nav>
-            <ul class="navbar">
+            <li class="nav-item">
+                <a class="nav-link" href="/auth/home"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}" alt="Menu">Home</a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/auth/home"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}" alt="Menu">Home</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/auth/budgets/create"><img class="menu-img" th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create Budget</a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/auth/budgets/create"><img class="menu-img" th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create Budget</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/auth/read"><img class="menu-img" th:src="@{/img/icons8-entrar-20.png}" alt="Menu">View Budgets</a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/auth/read"><img class="menu-img" th:src="@{/img/icons8-entrar-20.png}" alt="Menu">View Budgets</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout"><img class="menu-img" th:src="@{/img/icons8-desligar-20.png}" alt="Menu">Logout</a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout"><img class="menu-img" th:src="@{/img/icons8-desligar-20.png}" alt="Menu">Logout</a>
-                </li>
+        </ul>
+    </nav>
+</header>
 
-            </ul>
-        </nav>
-    </header>
-
-    <div class="msg" th:if="${message}">
+    <div th:if="${message}" class="msg">
         [[${message}]]
     </div>
 
@@ -60,7 +58,7 @@
                     <th>Expire</th>
                     <th>Observation</th>
                     <th>Budget Products</th>
-                    <th>Action</th>
+                    <th style="width:8em">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -76,15 +74,19 @@
                         <td th:text="${budget.expire}"></td>
                         <td th:text="${budget.observation}"></td>
                         <td><a class="table-link table-get" th:href="@{'/auth/products/read/' + ${budget.id}}">[[${budget.itensAmount}]]</a></td>
+
                         <td>
                             <a class="table-link table-add" th:href="@{'/auth/products/create/' + ${budget.id}}">Add Product</a>
+                            <br>
                             <a class="table-link table-edit" th:href="@{'/auth/budgets/edit/' + ${budget.id}}">Edit</a>
+                            <a class="table-link table-delete" th:href="@{'/auth/budgets/delete/' + ${budget.id}}">Delete</a>
                         </td>
                     </tr>
                 </th:block>
             </tbody>
         </table>
     </div>
+
 </body>
 
 </html>

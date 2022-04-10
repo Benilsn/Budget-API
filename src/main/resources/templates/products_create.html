@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <title>[[${pageTitle}]]</title>
     <link th:href="@{/styles/index.css}" rel="stylesheet" />
-    <link href="../static/styles/create.css" th:href="@{/styles/create.css}" rel="stylesheet" />
+    <link th:href="@{/styles/create.css}" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -21,15 +22,15 @@
         <ul class="navbar">
 
             <li class="nav-item">
-                <a class="nav-link" href="/"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}" alt="Menu">Home</a>
+                <a class="nav-link" href="/auth/home"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}" alt="Menu">Home</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/budgets/create"><img class="menu-img" th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create Budget</a>
+                <a class="nav-link" href="/auth/budgets/create"><img class="menu-img" th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create Budget</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/read"><img class="menu-img" th:src="@{/img/icons8-entrar-20.png}" alt="Menu">View Budgets</a>
+                <a class="nav-link" href="/auth/read"><img class="menu-img" th:src="@{/img/icons8-entrar-20.png}" alt="Menu">View Budgets</a>
             </li>
 
             <li class="nav-item">
@@ -43,10 +44,10 @@
 <div th:if="${message}">
     [[${message}]]
 </div>
-
+<div class="container">
 <div class="form-container">
     <h2>[[${pageTitle}]]</h2>
-    <form th:action="@{'/products/save/' + ${budgetID}}" method="POST" th:obejct="${newProduct}">
+    <form th:action="@{'/auth/products/save/' + ${budgetID}}" method="POST" th:obejct="${newProduct}">
         <div>
             <br><br>
             <label class="form-label" for="name">Product Name:</label>
@@ -66,13 +67,18 @@
             <button class="form-btn" type="button" onclick="cancelForm()">Cancel</button>
         </div>
     </form>
+</div>
+
 
 </div>
+
 <script>
         function cancelForm() {
-            window.location = "[[@{/read}]]"
+            window.location = "[[@{/auth/read}]]"
         }
     </script>
+
 </body>
+
 
 </html>

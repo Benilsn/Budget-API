@@ -43,7 +43,7 @@ public class UserService implements UserDetailsService {
 
         Set<GrantedAuthority> authorities = new HashSet<>();
 
-        authorities.add(new SimpleGrantedAuthority(user.getRole()));
+        authorities.add(user.getRole());
         return authorities;
     }
 }

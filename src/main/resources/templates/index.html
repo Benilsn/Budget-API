@@ -16,19 +16,19 @@
          <img class="menu-img" th:src="@{/img/icons8-menu-48.png}" alt="Menu">
         </label>
 
-        <nav>
+        <nav id="nav">
             <ul class="navbar">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}" alt="Menu">Home</a>
+                    <a class="nav-link" href="/auth/home"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}" alt="Menu">Home</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/budgets/create"><img class="menu-img" th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create Budget</a>
+                    <a class="nav-link" href="/auth/budgets/create"><img class="menu-img" th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create Budget</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link " href="/read"><img class="menu-img " th:src="@{/img/icons8-entrar-20.png} " alt="Menu ">View Budgets</a>
+                    <a class="nav-link " href="/auth/read"><img class="menu-img " th:src="@{/img/icons8-entrar-20.png} " alt="Menu ">View Budgets</a>
                 </li>
 
                 <li class="nav-item ">
@@ -38,6 +38,13 @@
             </ul>
         </nav>
     </header>
+
+<div class="welcome-div">
+<h1>
+    Welcome [[${userName}]]
+</h1>
+
+</div>
 
 </body>
 

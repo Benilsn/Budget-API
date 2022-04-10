@@ -6,28 +6,28 @@
 .form-container {
     position: absolute;
     display: flex;
-    justify-items: center;
+    justify-content: left;
     background-color: rgba(255,247,247,0.5);
     width: 28em;
-    height: 34em;
+    height: 23em;
+    left: 17em;
     top: 5em;
     border-radius: 1em;
     border:2px solid;
 }
 
 .form-container div {
-    position: relative;
+    position: absolute;
     display: grid;
+
 }
 
 .form-container h2 {
     position: relative;
     display: flex;
     justify-content: center;
-    top: 1em;
-    left: 6em;
-
-    margin: -3%;
+    top: 0.7em;
+    left: 5.5em;
 }
 
 .form-label {

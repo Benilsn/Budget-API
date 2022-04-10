@@ -36,7 +36,7 @@ public class Budget {
     private Set<Product> products = new HashSet<>();
 
     @Column
-    private Double totalValue;
+    private Double totalValue = 0.0;
 
     @Column(nullable = true)
     private String observation;
@@ -70,12 +70,12 @@ public class Budget {
     }
 
     public void addProduct(Product product){
+        this.totalValue += product.getTotalDiscount();
         products.add(product);
     }
 
     public void setItensAmount(){
         this.itensAmount = products.size();
     }
-
 
 }

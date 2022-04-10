@@ -1,3 +1,8 @@
+.table-div {
+    display: flex;
+    justify-content: center;
+}
+
 .data-table {
     border-collapse: collapse;
     margin: 25px 0;
@@ -10,16 +15,19 @@
 .data-table thead tr {
     background-color: #484d4a;
     color: #ffffff;
-    text-align: left;
+    text-align: center;
 }
 
 .data-table th,
 .data-table td {
     padding: 12px 15px;
+    text-align: center;
+
 }
 
 .data-table tbody tr {
     border-bottom: 1px solid #dddddd;
+    text-align: center;
 }
 
 .data-table tbody tr:nth-of-type(even) {
@@ -28,4 +36,38 @@
 
 .data-table tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
+}
+
+a.table-link {
+    color: black;
+    display: inline-flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+a.table-link:hover {
+    color: white;
+    box-shadow: 5px 10px;
+    -webkit-box-shadow: 0 1px 15px 0 rgb(107, 142, 238);
+}
+
+a.table-get {
+    color: rgb(170, 99, 169);
+    text-decoration: underline;
+}
+
+a.table-add {
+    background-color: rgb(128, 198, 127);
+    margin-bottom: 1em;
+}
+
+a.table-edit{
+    background-color: rgb(252, 255, 170);
+    margin-right: 1em;
+    width: 3em;
+}
+
+a.table-delete{
+    background-color: rgb(253, 131, 112);
+    width: 3em;
 }

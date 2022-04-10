@@ -1,0 +1,43 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.login-div {
+    font-size: 1.2em;
+    background-color: rgba(107, 119, 141, 0.6);
+    width: 25em;
+    height: 16em;
+    top: 5em;
+    border-radius: 1em;
+    position: absolute;
+}
+
+.login-div h2 {
+    position: relative;
+    display: grid;
+    justify-content: center;
+}
+
+.form-label, .form-input {
+    position: relative;
+    font-size: 1.1em;
+    top:1em;
+    left: 2em;
+}
+
+.form-btn {
+    color: white;
+    position: relative;
+    background-color: rgba(107, 119, 141, 1);
+    width: 20em;
+    height: 2.5em;
+    top: 3em;
+    left: 10em;
+}
+
+.form-btn:hover {
+    background-color: rgb(139, 139, 247);
+    -moz-box-align: stretch;
+    -webkit-box-shadow: 0 3px 15px 0 rgb(107, 142, 238);
+}

@@ -3,6 +3,7 @@ package com.varejonline.budget.Budget.models.user;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
 
@@ -27,9 +28,9 @@ public class User {
 
     @Column(name="role")
     @NonNull
-    private String role;
+    private SimpleGrantedAuthority role;
 
-    public User(String username, String password, String role){
+    public User(String username, String password, SimpleGrantedAuthority role){
         this.username = username;
         this.password = password;
         this.role = role;

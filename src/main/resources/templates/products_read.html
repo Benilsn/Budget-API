@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>[[${pageTitle}]]</title>
-    <link href="../static/styles/index.css" th:href="@{/styles/index.css}" rel="stylesheet"/>
-    <link href="../static/styles/read.css" th:href="@{/styles/read.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/index.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/read.css}" rel="stylesheet"/>
 
 </head>
 
@@ -23,18 +23,21 @@
         <ul class="navbar">
 
             <li class="nav-item">
-                <a class="nav-link" href="/"><img class="menu-img" th:src="@{/img/icons8-casinha-de-cachorro-20.png}"
-                                                  alt="Menu">Home</a>
+                <a class="nav-link" href="/auth/home"><img class="menu-img"
+                                                           th:src="@{/img/icons8-casinha-de-cachorro-20.png}"
+                                                           alt="Menu">Home</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/budgets/create"><img class="menu-img"
-                                                                th:src="@{/img/icons8-crie-um-novo-20.png}" alt="Menu">Create
+                <a class="nav-link" href="/auth/budgets/create"><img class="menu-img"
+                                                                     th:src="@{/img/icons8-crie-um-novo-20.png}"
+                                                                     alt="Menu">Create
                     Budget</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/read"><img class="menu-img" th:src="@{/img/icons8-entrar-20.png}" alt="Menu">View
+                <a class="nav-link" href="/auth/read"><img class="menu-img" th:src="@{/img/icons8-entrar-20.png}"
+                                                           alt="Menu">View
                     Budgets</a>
             </li>
 
@@ -50,7 +53,7 @@
 <div th:if="${message}"></div>
 [[${message}]]
 <div class="table-div">
-    <table class="data-table ">
+    <table class="data-table">
         <thead>
         <tr>
             <th>ID</th>
@@ -76,8 +79,8 @@
         </th:block>
         </tbody>
     </table>
-
 </div>
+
 </body>
 
 </html>
