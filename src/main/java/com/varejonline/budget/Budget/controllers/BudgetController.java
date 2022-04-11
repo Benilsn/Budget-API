@@ -6,19 +6,15 @@ import com.varejonline.budget.Budget.models.budget.Budget;
 import com.varejonline.budget.Budget.models.product.Product;
 import com.varejonline.budget.Budget.services.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class BudgetController {
@@ -53,7 +49,6 @@ public class BudgetController {
 
     @PostMapping("/auth/budgets/save")
     public String saveBudget(Budget budget, RedirectAttributes ra) {
-
         ra.addFlashAttribute("message", "The budget has been successfully saved!");
         budgetService.save(budget);
         return "redirect:/auth/read";
@@ -64,6 +59,7 @@ public class BudgetController {
         try {
             Budget newBudget = budgetService.get(id);
             model.addAttribute("newBudget", newBudget);
+            model.addAttribute("products", newBudget.getProducts());
             model.addAttribute("pageTitle", "Edit Page");
             model.addAttribute("divTitle", "Edit Budget (ID: "+  id + ")");
             ra.addFlashAttribute("message", "The budget has been successfully edited!");

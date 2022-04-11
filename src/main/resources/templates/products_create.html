@@ -51,16 +51,16 @@
         <div>
             <br><br>
             <label class="form-label" for="name">Product Name:</label>
-            <input id="name" class="form-input" type="text" th:field="*{newProduct.name}" required minlength="1">
+            <input id="name" class="form-input" type="text" th:field="*{newProduct.name}" required minlength="2">
             <br><br>
             <label class="form-label" for="amount">Product amount:</label>
-            <input id="amount" class="form-input" type="number" th:field="*{newProduct.amount}" required minlength="3">
+            <input id="amount" class="form-input" type="number" th:field="*{newProduct.amount}" required minlength="1">
             <br><br>
             <label class="form-label" for="unitaryValue">Unitary Value(R$):</label>
-            <input id="unitaryValue" class="form-input" type="number" th:field="*{newProduct.unitaryValue}" required minlength="6">
+            <input id="unitaryValue" class="form-input" type="number" th:field="*{newProduct.unitaryValue}" required minlength="1">
             <br><br>
             <label class="form-label" for="percentageDiscount">Discount(%):</label>
-            <input id="percentageDiscount" class="form-input" type="text" th:field="*{newProduct.percentageDiscount}">
+            <input id="percentageDiscount" class="form-input" type="text" th:field="*{newProduct.percentageDiscount}" required minlength="1">
             <br><br>
 
             <button class="form-btn" type="submit">Create</button>

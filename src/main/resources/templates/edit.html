@@ -65,20 +65,20 @@
             <input id="observation" class="form-input" type="text" th:field="*{newBudget.observation}">
             <br><br>
 
-            <input type="hidden" th:field="*{newBudget.client.name}">
             <input type="hidden" th:field="*{newBudget.validity}">
+            <input type="hidden" th:field="*{newBudget.client.name}">
             <input type="hidden" th:field="*{newBudget.totalValue}">
             <input type="hidden" th:field="*{newBudget.timeCreated}">
-            <input type="hidden" th:field="*{newBudget.createdBy}">
             <input type="hidden" th:field="*{newBudget.expire}">
+            <input type="hidden" th:field="*{newBudget.createdBy}">
             <input type="hidden" th:field="*{newBudget.itensAmount}">
+            <input type="hidden" th:field="*{newBudget.products}">
 
             <button class="form-btn" type="submit">[[${saveButton}]]</button>
             <button class="form-btn" type="button" onclick="cancelForm()">Cancel</button>
         </div>
     </form>
 </div>
-
 </div>
 
 <script>

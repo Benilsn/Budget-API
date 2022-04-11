@@ -32,8 +32,8 @@ public class Budget {
 
     @OneToMany(cascade=CascadeType.ALL)
     @ElementCollection
-    @CollectionTable(name = "products", joinColumns = @JoinColumn(name = "budget_id"))
-    private Set<Product> products = new HashSet<>();
+    @CollectionTable(name = "products", joinColumns = @JoinColumn(name = "product_id"))
+    private Set<Product> products;
 
     @Column
     private Double totalValue = 0.0;
@@ -56,7 +56,7 @@ public class Budget {
     @Transient
     private final DateTimeFormatter sdf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public Budget(Integer validity, Client client, String observation){
+    public Budget(Integer validity, Client client, String observation, Set<Product> products){
         this.validity = validity;
         this.client = client;
         for (Product p : products){
@@ -67,6 +67,7 @@ public class Budget {
         this.createdBy = SecurityContextHolder.getContext().getAuthentication().getName();
         this.expire = sdf.format(LocalDate.now().plusDays(validity));
         this.itensAmount = products.size();
+        this.products = products;
     }
 
     public void addProduct(Product product){

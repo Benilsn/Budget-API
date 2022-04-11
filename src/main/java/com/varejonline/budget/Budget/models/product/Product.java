@@ -1,7 +1,6 @@
 package com.varejonline.budget.Budget.models.product;
 
 import com.varejonline.budget.Budget.models.budget.Budget;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -30,6 +29,10 @@ public class Product {
 
     @Column
     private Double totalDiscount;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "budget_id")
+    private Budget budget;
 
 
     public Product(String name, Integer amount, Double unitaryValue, Double percentageDiscount){
