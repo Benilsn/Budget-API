@@ -54,24 +54,24 @@ a.table-link:hover {
 a.table-get {
     color: rgb(170, 99, 169);
     text-decoration: underline;
-    padding: 2px 2px;
+    padding: 5px 5px;
 }
 
 a.table-add {
     background-color: rgb(128, 198, 127);
     margin-bottom: 1em;
-    padding: 2px 2px;
+    padding: 5px 5px;
 }
 
 a.table-edit{
     background-color: rgb(252, 255, 170);
     margin-right: 1em;
     width: 3em;
-    padding: 2px 2px;
+    padding: 5px 5px;
 }
 
 a.table-delete{
     background-color: rgb(253, 131, 112);
     width: 3em;
-    padding: 2px 2px;
+    padding: 5px 5px;
 }
